@@ -1,6 +1,6 @@
 #! /bin/sh
 
-EXECUTABLE_PATH="../build/tema2"
+EXECUTABLE_PATH="build/tema2"
 INPUT_FOLDER_PATH="input"
 OUTPUT_FOLDER_PATH="output"
 
