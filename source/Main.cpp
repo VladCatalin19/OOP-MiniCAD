@@ -1,5 +1,5 @@
-#include "Utils/Constants.h"
-#include "App/App.h"
+#include "Utils/Constants.hpp"
+#include <App/App.hpp>
 
 #include <iostream>
 

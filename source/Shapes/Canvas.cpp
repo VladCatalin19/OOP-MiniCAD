@@ -1,6 +1,7 @@
-#include "Canvas.h"
-#include "../ShapeVisitors/ShapeVisitor.h"
-#include "../Utils/Constants.h"
+#include "Canvas.hpp"
+
+#include <ShapeVisitors/ShapeVisitor.hpp>
+#include <Utils/Constants.hpp>
 
 #include <string>
 

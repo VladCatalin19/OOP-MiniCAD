@@ -1,16 +1,16 @@
-#include "ShapeFactory.h"
+#include "ShapeFactory.hpp"
 
-#include "../Shapes/Shape.h"
-#include "../Shapes/Canvas.h"
-#include "../Shapes/Line.h"
-#include "../Shapes/Square.h"
-#include "../Shapes/Rectangle.h"
-#include "../Shapes/Circle.h"
-#include "../Shapes/Triangle.h"
-#include "../Shapes/Diamond.h"
-#include "../Shapes/Polygon.h"
+#include <Shapes/Shape.hpp>
+#include <Shapes/Canvas.hpp>
+#include <Shapes/Line.hpp>
+#include <Shapes/Square.hpp>
+#include <Shapes/Rectangle.hpp>
+#include <Shapes/Circle.hpp>
+#include <Shapes/Triangle.hpp>
+#include <Shapes/Diamond.hpp>
+#include <Shapes/Polygon.hpp>
 
-#include "../Utils/Constants.h"
+#include <Utils/Constants.hpp>
 
 #include <sstream>
 #include <cstdlib>

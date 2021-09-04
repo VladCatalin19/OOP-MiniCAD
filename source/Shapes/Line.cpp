@@ -1,6 +1,6 @@
-#include "Line.h"
-#include "../ShapeVisitors/ShapeVisitor.h"
-#include "../Utils/Constants.h"
+#include "Line.hpp"
+#include <ShapeVisitors/ShapeVisitor.hpp>
+#include <Utils/Constants.hpp>
 
 Line::Line(Point p0, Point p1, Color color): p0(p0), p1(p1), color(color)
 {

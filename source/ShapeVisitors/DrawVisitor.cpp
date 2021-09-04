@@ -1,14 +1,15 @@
-#include "DrawVisitor.h"
+#include "DrawVisitor.hpp"
 
-#include "../Shapes/Canvas.h"
-#include "../Shapes/Line.h"
-#include "../Shapes/Square.h"
-#include "../Shapes/Rectangle.h"
-#include "../Shapes/Circle.h"
-#include "../Shapes/Triangle.h"
-#include "../Shapes/Diamond.h"
-#include "../Shapes/Polygon.h"
-#include "../Utils/Constants.h"
+#include <Shapes/Canvas.hpp>
+#include <Shapes/Line.hpp>
+#include <Shapes/Square.hpp>
+#include <Shapes/Rectangle.hpp>
+#include <Shapes/Circle.hpp>
+#include <Shapes/Triangle.hpp>
+#include <Shapes/Diamond.hpp>
+#include <Shapes/Polygon.hpp>
+
+#include <Utils/Constants.hpp>
 
 #include <opencv2/core/matx.hpp>
 #include <opencv2/imgcodecs.hpp>

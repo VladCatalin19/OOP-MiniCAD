@@ -1,6 +1,7 @@
-#include "Polygon.h"
-#include "../ShapeVisitors/ShapeVisitor.h"
-#include "../Utils/Constants.h"
+#include "Polygon.hpp"
+
+#include <ShapeVisitors/ShapeVisitor.hpp>
+#include <Utils/Constants.hpp>
 
 Polygon::Polygon(std::vector<Point> points, Color outlineColor, Color fillColor)
 	: outlineColor(outlineColor), fillColor(fillColor)

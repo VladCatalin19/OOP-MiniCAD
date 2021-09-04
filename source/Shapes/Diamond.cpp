@@ -1,6 +1,7 @@
-#include "Diamond.h"
-#include "../ShapeVisitors/ShapeVisitor.h"
-#include "../Utils/Constants.h"
+#include "Diamond.hpp"
+
+#include <ShapeVisitors/ShapeVisitor.hpp>
+#include <Utils/Constants.hpp>
 
 Diamond::Diamond(Point center, int horizontalDiagonal, int verticalDiagonal,
 	Color outlineColor, Color fillColor)

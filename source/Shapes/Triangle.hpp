@@ -1,10 +1,11 @@
-#pragma once
+#ifndef MINICAD_SOURCE_SHAPES_TRIANGLE_HPP_INCLUDED
+#define MINICAD_SOURCE_SHAPES_TRIANGLE_HPP_INCLUDED
 
-#include "Shape.h"
-#include "../Utils/Point.h"
-#include "../Utils/Color.h"
+#include "Shape.hpp"
+#include <Utils/Point.hpp>
+#include <Utils/Color.hpp>
 
-class Triangle: public Shape
+class Triangle : public Shape
 {
 private:
 	Point p0, p1, p2;
@@ -24,3 +25,5 @@ public:
 
 	friend std::ostream& operator<<(std::ostream& os, Triangle const& triangle);
 };
+
+#endif // MINICAD_SOURCE_SHAPES_TRIANGLE_HPP_INCLUDED

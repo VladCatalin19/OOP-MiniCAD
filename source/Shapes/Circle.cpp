@@ -1,6 +1,7 @@
-#include "Circle.h"
-#include "../ShapeVisitors/ShapeVisitor.h"
-#include "../Utils/Constants.h"
+#include "Circle.hpp"
+
+#include <ShapeVisitors/ShapeVisitor.hpp>
+#include <Utils/Constants.hpp>
 
 Circle::Circle(Point center, int radius, Color outlineColor, Color fillColor)
 	: center(center), outlineColor(outlineColor), fillColor(fillColor)

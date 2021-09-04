@@ -1,8 +1,9 @@
-#pragma once
+#ifndef MINICAD_SOURCE_SHAPES_CIRCLE_HPP_INCLUDED
+#define MINICAD_SOURCE_SHAPES_CIRCLE_HPP_INCLUDED
 
-#include "Shape.h"
-#include "../Utils/Point.h"
-#include "../Utils/Color.h"
+#include "Shape.hpp"
+#include <Utils/Point.hpp>
+#include <Utils/Color.hpp>
 #include <ostream>
 
 class Circle: public Shape
@@ -25,3 +26,5 @@ public:
 
 	friend std::ostream& operator<<(std::ostream& os, Circle const& circle);
 };
+
+#endif // MINICAD_SOURCE_SHAPES_CIRCLE_HPP_INCLUDED

@@ -1,6 +1,19 @@
-#include "ShapeVisitor.h"
+#ifndef MINICAD_SOURCE_SHAPEVISITORS_DRAWVISITOR_HPP_INCLUDED
+#define MINICAD_SOURCE_SHAPEVISITORS_DRAWVISITOR_HPP_INCLUDED
+
+#include "ShapeVisitor.hpp"
+
 #include <opencv2/core.hpp>
 #include <opencv2/core/matx.hpp>
+
+#include <Shapes/Canvas.hpp>
+#include <Shapes/Line.hpp>
+#include <Shapes/Square.hpp>
+#include <Shapes/Rectangle.hpp>
+#include <Shapes/Circle.hpp>
+#include <Shapes/Triangle.hpp>
+#include <Shapes/Diamond.hpp>
+#include <Shapes/Polygon.hpp>
 
 class DrawVisitor : public ShapeVisitor
 {
@@ -33,3 +46,5 @@ private:
 		cv::Vec4b const& fillColor
 	);
 };
+
+#endif // MINICAD_SOURCE_SHAPEVISITORS_DRAWVISITOR_HPP_INCLUDED

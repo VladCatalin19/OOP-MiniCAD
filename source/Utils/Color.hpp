@@ -1,4 +1,5 @@
-#pragma once
+#ifndef MINICAD_SOURCE_UTILS_COLOR_HPP_INCLUDED
+#define MINICAD_SOURCE_UTILS_COLOR_HPP_INCLUDED
 
 #include <iostream>
 #include <cstdint>
@@ -12,3 +13,5 @@ struct Color
 
 	friend std::ostream& operator<<(std::ostream& os, Color const& color);
 };
+
+#endif // MINICAD_SOURCE_UTILS_COLOR_HPP_INCLUDED

@@ -1,8 +1,9 @@
-#pragma once
+#ifndef MINICAD_SOURCE_SHAPES_DIAMOND_HPP_INCLUDED
+#define MINICAD_SOURCE_SHAPES_DIAMOND_HPP_INCLUDED
 
-#include "Shape.h"
-#include "../Utils/Point.h"
-#include "../Utils/Color.h"
+#include "Shape.hpp"
+#include <Utils/Point.hpp>
+#include <Utils/Color.hpp>
 #include <ostream>
 
 class Diamond: public Shape
@@ -27,3 +28,5 @@ public:
 
 	friend std::ostream& operator<<(std::ostream& os, Diamond const& diamond);
 };
+
+#endif // MINICAD_SOURCE_SHAPES_DIAMOND_HPP_INCLUDED

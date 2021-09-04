@@ -1,13 +1,13 @@
-#include "PrintVisitor.h"
+#include "PrintVisitor.hpp"
 
-#include "../Shapes/Canvas.h"
-#include "../Shapes/Line.h"
-#include "../Shapes/Square.h"
-#include "../Shapes/Rectangle.h"
-#include "../Shapes/Circle.h"
-#include "../Shapes/Triangle.h"
-#include "../Shapes/Diamond.h"
-#include "../Shapes/Polygon.h"
+#include <Shapes/Canvas.hpp>
+#include <Shapes/Line.hpp>
+#include <Shapes/Square.hpp>
+#include <Shapes/Rectangle.hpp>
+#include <Shapes/Circle.hpp>
+#include <Shapes/Triangle.hpp>
+#include <Shapes/Diamond.hpp>
+#include <Shapes/Polygon.hpp>
 
 #include <iostream>
 

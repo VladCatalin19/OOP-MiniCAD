@@ -1,6 +1,7 @@
-#include "Rectangle.h"
-#include "../ShapeVisitors/ShapeVisitor.h"
-#include "../Utils/Constants.h"
+#include "Rectangle.hpp"
+
+#include <ShapeVisitors/ShapeVisitor.hpp>
+#include <Utils/Constants.hpp>
 
 Rectangle::Rectangle(Point topLeft, int height, int width, Color outlineColor,
 	Color fillColor)

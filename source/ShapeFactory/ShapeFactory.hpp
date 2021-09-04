@@ -1,4 +1,5 @@
-#pragma once
+#ifndef MINICAD_SOURCE_SHAPEFACTORY_SHAPEFACTORY_HPP_INCLUDED
+#define MINICAD_SOURCE_SHAPEFACTORY_SHAPEFACTORY_HPP_INCLUDED
 
 #include <string>
 
@@ -21,3 +22,5 @@ public:
 
 	Shape* CreateShape(std::string const& line) const;
 };
+
+#endif // MINICAD_SOURCE_SHAPEFACTORY_SHAPEFACTORY_HPP_INCLUDED

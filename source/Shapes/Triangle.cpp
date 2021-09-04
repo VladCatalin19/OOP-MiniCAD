@@ -1,6 +1,7 @@
-#include "Triangle.h"
-#include "../ShapeVisitors/ShapeVisitor.h"
-#include "../Utils/Constants.h"
+#include "Triangle.hpp"
+
+#include <ShapeVisitors/ShapeVisitor.hpp>
+#include <Utils/Constants.hpp>
 
 Triangle::Triangle(Point p0, Point p1, Point p2, Color outlineColor, Color fillColor)
 	: p0(p0), p1(p1), p2(p2), outlineColor(outlineColor), fillColor(fillColor)

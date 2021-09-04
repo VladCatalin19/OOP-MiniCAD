@@ -1,6 +1,7 @@
-#include "Square.h"
-#include "../ShapeVisitors/ShapeVisitor.h"
-#include "../Utils/Constants.h"
+#include "Square.hpp"
+
+#include <ShapeVisitors/ShapeVisitor.hpp>
+#include <Utils/Constants.hpp>
 
 Square::Square(Point topLeft, int side, Color outlineColor, Color fillColor)
 	: topLeft(topLeft), outlineColor(outlineColor), fillColor(fillColor)

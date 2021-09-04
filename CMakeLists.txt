@@ -1,9 +1,10 @@
 cmake_minimum_required(VERSION "3.18.3")
 
 set(CMAKE_CXX_VERSION 17)
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O2 -Wall -Wextra -pedantic")
+set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -O2 -Wall -Wextra -pedantic")
 
 project("tema2")
+include_directories("source")
 
 file(GLOB_RECURSE SOURCES "source/*.cpp")
 

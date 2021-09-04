@@ -1,13 +1,14 @@
-#pragma once
+#ifndef MINICAD_SOURCE_SHAPEVISITORS_SHAPEVISITOR_HPP_INCLUDED
+#define MINICAD_SOURCE_SHAPEVISITORS_SHAPEVISITOR_HPP_INCLUDED
 
-class Canvas;
-class Line;
-class Square;
-class Rectangle;
-class Circle;
-class Triangle;
-class Diamond;
-class Polygon;
+#include <Shapes/Canvas.hpp>
+#include <Shapes/Line.hpp>
+#include <Shapes/Square.hpp>
+#include <Shapes/Rectangle.hpp>
+#include <Shapes/Circle.hpp>
+#include <Shapes/Triangle.hpp>
+#include <Shapes/Diamond.hpp>
+#include <Shapes/Polygon.hpp>
 
 class ShapeVisitor
 {
@@ -24,3 +25,5 @@ public:
 	virtual void Visit(Diamond const& diamond) = 0;
 	virtual void Visit(Polygon const& polygon) = 0;
 };
+
+#endif // MINICAD_SOURCE_SHAPEVISITORS_SHAPEVISITOR_HPP_INCLUDED

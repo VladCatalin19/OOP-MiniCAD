@@ -1,7 +1,8 @@
-#pragma once
+#ifndef MINICAD_SOURCE_SHAPES_CANVAS_HPP_INCLUDED
+#define MINICAD_SOURCE_SHAPES_CANVAS_HPP_INCLUDED
 
-#include "Shape.h"
-#include "../Utils/Color.h"
+#include "Shape.hpp"
+#include <Utils/Color.hpp>
 #include <ostream>
 
 class Canvas: public Shape
@@ -21,3 +22,5 @@ public:
 	void Accept(ShapeVisitor& visitor) const override;
 	friend std::ostream& operator<<(std::ostream& os, Canvas const& canvas);
 };
+
+#endif // MINICAD_SOURCE_SHAPES_CANVAS_HPP_INCLUDED

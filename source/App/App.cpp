@@ -1,15 +1,14 @@
-#include "App.h"
+#include "App.hpp"
 
-#include "../Shapes/Shape.h"
-#include "../Utils/Constants.h"
-#include "../ShapeFactory/ShapeFactory.h"
+#include <Shapes/Shape.hpp>
+#include <Utils/Constants.hpp>
+#include <ShapeFactory/ShapeFactory.hpp>
+#include <ShapeVisitors/DrawVisitor.hpp>
+#include <ShapeVisitors/PrintVisitor.hpp>
 
-#include "../ShapeVisitors/DrawVisitor.h"
-#include "../ShapeVisitors/PrintVisitor.h"
-
-#include <fstream>
-#include <iostream>
-#include <stdexcept>
+#include <fstream>				// std::ifstream
+#include <string>				// std::string
+#include <vector>				// std::vector
 
 App::App()
 {
