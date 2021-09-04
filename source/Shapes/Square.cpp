@@ -1,49 +1,56 @@
 #include "Square.hpp"
 
 #include <ShapeVisitors/ShapeVisitor.hpp>
+#include <Utils/Point.hpp>
+#include <Utils/Color.hpp>
 #include <Utils/Constants.hpp>
 
-Square::Square(Point topLeft, int side, Color outlineColor, Color fillColor)
-    : topLeft(topLeft), outlineColor(outlineColor), fillColor(fillColor)
-{
-    this->side = side;
-}
+#include <ostream>              // std::ostream
 
-Square::~Square()
+namespace MiniCAD
 {
+    Square::Square(Point top_left, int side, Color outline_color, Color fill_color)
+        : top_left(top_left), side(side), outline_color(outline_color), fill_color(fill_color)
+    {
+        
+    }
 
-}
+    Square::~Square()
+    {
 
-Point Square::GetTopLeftPoint() const
-{
-    return topLeft;
-}
+    }
 
-int Square::GetSide() const
-{
-    return side;
-}
+    Point Square::GetTopLeftPoint() const
+    {
+        return top_left;
+    }
 
-Color Square::GetOutlineColor() const
-{
-    return outlineColor;
-}
+    int Square::GetSide() const
+    {
+        return side;
+    }
 
-Color Square::GetFillColor() const
-{
-    return fillColor;
-}
+    Color Square::GetOutlineColor() const
+    {
+        return outline_color;
+    }
 
-void Square::Accept(ShapeVisitor& visitor) const
-{
-    visitor.Visit(*this);
-}
+    Color Square::GetFillColor() const
+    {
+        return fill_color;
+    }
 
-std::ostream& operator<<(std::ostream& os, Square const& square)
-{
-    return os << ShapeNames::Square
-        << " " << square.topLeft
-        << " " << square.side
-        << " " << square.outlineColor
-        << " " << square.fillColor;
+    void Square::Accept(ShapeVisitor &visitor) const
+    {
+        visitor.Visit(*this);
+    }
+
+    std::ostream& operator<<(std::ostream &os, const Square &square)
+    {
+        return os << ShapeNames::Square
+                  << " " << square.top_left
+                  << " " << square.side
+                  << " " << square.outline_color
+                  << " " << square.fill_color;
+    }
 }

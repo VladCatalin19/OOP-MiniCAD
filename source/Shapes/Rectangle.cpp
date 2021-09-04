@@ -1,57 +1,64 @@
 #include "Rectangle.hpp"
 
 #include <ShapeVisitors/ShapeVisitor.hpp>
+#include <Utils/Point.hpp>
+#include <Utils/Color.hpp>
 #include <Utils/Constants.hpp>
 
-Rectangle::Rectangle(Point topLeft, int height, int width, Color outlineColor,
-    Color fillColor)
-    : topLeft(topLeft), outlineColor(outlineColor), fillColor(fillColor)
-{
-    this->height = height;
-    this->width = width;
-}
+#include <ostream>              // std::ostream
 
-Rectangle::~Rectangle()
+namespace MiniCAD
 {
+    Rectangle::Rectangle(Point top_left, int height, int width, Color outline_color,
+                         Color fill_color)
+        : top_left(top_left), height(height), width(width),
+          outline_color(outline_color), fill_color(fill_color)
+    {
+        
+    }
 
-}
+    Rectangle::~Rectangle()
+    {
 
-Point Rectangle::GetTopLeftPoint() const
-{
-    return topLeft;
-}
+    }
 
-int Rectangle::GetHeight() const
-{
-    return height;
-}
+    Point Rectangle::GetTopLeftPoint() const
+    {
+        return top_left;
+    }
 
-int Rectangle::GetWidth() const
-{
-    return width;
-}
+    int Rectangle::GetHeight() const
+    {
+        return height;
+    }
 
-Color Rectangle::GetOutlineColor() const
-{
-    return outlineColor;
-}
+    int Rectangle::GetWidth() const
+    {
+        return width;
+    }
 
-Color Rectangle::GetFillColor() const
-{
-    return fillColor;
-}
+    Color Rectangle::GetOutlineColor() const
+    {
+        return outline_color;
+    }
 
-void Rectangle::Accept(ShapeVisitor& visitor) const
-{
-    visitor.Visit(*this);
-}
+    Color Rectangle::GetFillColor() const
+    {
+        return fill_color;
+    }
 
-std::ostream& operator<<(std::ostream& os, Rectangle const& rectangle)
-{
-    return os << ShapeNames::Rectangle
-        << " " << rectangle.topLeft
-        << " " << rectangle.height
-        << " " << rectangle.width
-        << " " << rectangle.outlineColor
-        << " " << rectangle.fillColor;
+    void Rectangle::Accept(ShapeVisitor &visitor) const
+    {
+        visitor.Visit(*this);
+    }
+
+    std::ostream& operator<<(std::ostream &os, const Rectangle &rectangle)
+    {
+        return os << ShapeNames::Rectangle
+                  << " " << rectangle.top_left
+                  << " " << rectangle.height
+                  << " " << rectangle.width
+                  << " " << rectangle.outline_color
+                  << " " << rectangle.fill_color;
+    }
 }

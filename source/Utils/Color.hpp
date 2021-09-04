@@ -1,17 +1,20 @@
 #ifndef MINICAD_SOURCE_UTILS_COLOR_HPP_INCLUDED
 #define MINICAD_SOURCE_UTILS_COLOR_HPP_INCLUDED
 
-#include <iostream>
-#include <cstdint>
-#include <string>
+#include <cstdint>              // std::uint8_t
+#include <ostream>              // std::ostream
 
-struct Color
+namespace MiniCAD
 {
-    uint8_t r, g, b, a;
-    Color(uint8_t r, uint8_t g, uint8_t b, uint8_t a);
-    ~Color();
+    struct Color
+    {
+        std::uint8_t r, g, b, a;
 
-    friend std::ostream& operator<<(std::ostream& os, Color const& color);
-};
+        Color(std::uint8_t r, std::uint8_t g, std::uint8_t b, std::uint8_t a);
+        ~Color();
+
+        friend std::ostream& operator<<(std::ostream &os, const Color &color);
+    };
+}
 
 #endif // MINICAD_SOURCE_UTILS_COLOR_HPP_INCLUDED

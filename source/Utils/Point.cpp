@@ -1,20 +1,24 @@
 #include "Point.hpp"
 
-#include <iostream>
+#include <ostream>              // std::ostream
+#include <string>               // std::to_string
 
-Point::Point(int x, int y)
+namespace MiniCAD
 {
-    this->x = x;
-    this->y = y;
-}
+    Point::Point(int x, int y)
+        : x(x), y(y)
+    {
 
-Point::~Point()
-{
+    }
 
-}
+    Point::~Point()
+    {
 
-std::ostream& operator<<(std::ostream& os, Point const& point)
-{
-    return os << "(" << std::to_string(point.x)
-        << ", " + std::to_string(point.y) << ")";
+    }
+
+    std::ostream& operator<<(std::ostream &os, const Point &point)
+    {
+        return os << "(" << std::to_string(point.x)
+                  << ", " + std::to_string(point.y) << ")";
+    }
 }

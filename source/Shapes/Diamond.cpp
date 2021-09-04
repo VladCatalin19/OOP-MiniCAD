@@ -1,57 +1,66 @@
 #include "Diamond.hpp"
 
 #include <ShapeVisitors/ShapeVisitor.hpp>
+#include <Utils/Color.hpp>
 #include <Utils/Constants.hpp>
+#include <Utils/Point.hpp>
 
-Diamond::Diamond(Point center, int horizontalDiagonal, int verticalDiagonal,
-    Color outlineColor, Color fillColor)
-    : center(center), outlineColor(outlineColor), fillColor(fillColor)
+#include <ostream>              // std::ostream
+#include <string>               // std::to_string
+
+namespace MiniCAD
 {
-    this->horizontalDiagonal = horizontalDiagonal;
-    this->verticalDiagonal = verticalDiagonal;
-}
+    Diamond::Diamond(Point center, int horizontal_diagonal, int vertical_diagonal,
+                     Color outline_color, Color fill_color)
+        : center(center),
+          horizontal_diagonal(horizontal_diagonal), vertical_diagonal(vertical_diagonal),
+          outline_color(outline_color), fill_color(fill_color)
+    {
+        
+    }
 
-Diamond::~Diamond()
-{
+    Diamond::~Diamond()
+    {
 
-}
+    }
 
-Point Diamond::GetCenterPoint() const
-{
-    return center;
-}
+    Point Diamond::GetCenterPoint() const
+    {
+        return center;
+    }
 
-int Diamond::GetHorizontalDiagonal() const
-{
-    return horizontalDiagonal;
-}
+    int Diamond::GetHorizontalDiagonal() const
+    {
+        return horizontal_diagonal;
+    }
 
-int Diamond::GetVerticalDiagonal() const
-{
-    return verticalDiagonal;
-}
+    int Diamond::GetVerticalDiagonal() const
+    {
+        return vertical_diagonal;
+    }
 
-Color Diamond::GetOutlineColor() const
-{
-    return outlineColor;
-}
+    Color Diamond::GetOutlineColor() const
+    {
+        return outline_color;
+    }
 
-Color Diamond::GetFillColor() const
-{
-    return fillColor;
-}
+    Color Diamond::GetFillColor() const
+    {
+        return fill_color;
+    }
 
-void Diamond::Accept(ShapeVisitor& visitor) const
-{
-    visitor.Visit(*this);
-}
+    void Diamond::Accept(ShapeVisitor &visitor) const
+    {
+        visitor.Visit(*this);
+    }
 
-std::ostream& operator<<(std::ostream& os, Diamond const& diamond)
-{
-    return os << ShapeNames::Diamond
-        << " " << diamond.center
-        << " " << std::to_string(diamond.horizontalDiagonal)
-        << " " << std::to_string(diamond.verticalDiagonal)
-        << " " << diamond.outlineColor
-        << " " << diamond.fillColor;
+    std::ostream& operator<<(std::ostream &os, const Diamond &diamond)
+    {
+        return os << ShapeNames::Diamond
+                  << " " << diamond.center
+                  << " " << std::to_string(diamond.horizontal_diagonal)
+                  << " " << std::to_string(diamond.vertical_diagonal)
+                  << " " << diamond.outline_color
+                  << " " << diamond.fill_color;
+    }
 }

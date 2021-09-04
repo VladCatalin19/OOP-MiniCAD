@@ -3,9 +3,6 @@
 
 #include "ShapeVisitor.hpp"
 
-#include <opencv2/core.hpp>
-#include <opencv2/core/matx.hpp>
-
 #include <Shapes/Canvas.hpp>
 #include <Shapes/Line.hpp>
 #include <Shapes/Square.hpp>
@@ -15,36 +12,43 @@
 #include <Shapes/Diamond.hpp>
 #include <Shapes/Polygon.hpp>
 
-class DrawVisitor : public ShapeVisitor
+#include <opencv2/core/matx.hpp>    // cv::Vec4b
+#include <opencv2/core/mat.hpp>     // cv::Mat
+
+#include <string>                   // std::string
+
+namespace MiniCAD
 {
-private:
-    cv::Mat image;
-
-public:
-    DrawVisitor();
-    virtual ~DrawVisitor();
-
-    virtual void Visit(Canvas const& canvas) override;
-    virtual void Visit(Line const& line) override;
-    virtual void Visit(Square const& square) override;
-    virtual void Visit(Rectangle const& rectangle) override;
-    virtual void Visit(Circle const& circle) override;
-    virtual void Visit(Triangle const& triangle) override;
-    virtual void Visit(Diamond const& diamond) override;
-    virtual void Visit(Polygon const& polygon) override;
-
-    void WriteImage(std::string const& fileName);
-
-private:
-    struct Cell
+    class DrawVisitor : public ShapeVisitor
     {
-        int x, y;
-        Cell(int x, int y) : x(x), y(y) {}
+    private:
+        cv::Mat image;
+
+    public:
+        DrawVisitor();
+        virtual ~DrawVisitor();
+
+        virtual void Visit(const Canvas &canvas) override;
+        virtual void Visit(const Line &line) override;
+        virtual void Visit(const Square &square) override;
+        virtual void Visit(const Rectangle &rectangle) override;
+        virtual void Visit(const Circle &circle) override;
+        virtual void Visit(const Triangle &triangle) override;
+        virtual void Visit(const Diamond &diamond) override;
+        virtual void Visit(const Polygon &polygon) override;
+
+        void WriteImage(const std::string &fileName);
+
+    private:
+        void FloodFill(int x_start, int y_start, const cv::Vec4b &outline_color,
+                       const cv::Vec4b &fill_color);
+
+        struct Cell
+        {
+            int x, y;
+            Cell(int x, int y) : x(x), y(y) {}
+        };
     };
-    void FloodFill(
-        int xStart, int yStart, cv::Vec4b const& outlineColor,
-        cv::Vec4b const& fillColor
-    );
-};
+}
 
 #endif // MINICAD_SOURCE_SHAPEVISITORS_DRAWVISITOR_HPP_INCLUDED

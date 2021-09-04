@@ -1,16 +1,19 @@
 #ifndef MINICAD_SOURCE_UTILS_POINT_HPP_INCLUDED
 #define MINICAD_SOURCE_UTILS_POINT_HPP_INCLUDED
 
-#include <iostream>
-#include <string>
+#include <ostream>              // std::ostream
 
-struct Point
+namespace MiniCAD
 {
-    int x, y;
-    Point(int x, int y);
-    ~Point();
+    struct Point
+    {
+        int x, y;
 
-    friend std::ostream& operator<<(std::ostream& os, Point const& point);
-};
+        Point(int x, int y);
+        ~Point();
+
+        friend std::ostream& operator<<(std::ostream &os, const Point &point);
+    };
+}
 
 #endif // MINICAD_SOURCE_UTILS_POINT_HPP_INCLUDED

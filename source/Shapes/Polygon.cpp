@@ -1,47 +1,55 @@
 #include "Polygon.hpp"
 
 #include <ShapeVisitors/ShapeVisitor.hpp>
+#include <Utils/Point.hpp>
+#include <Utils/Color.hpp>
 #include <Utils/Constants.hpp>
 
-Polygon::Polygon(std::vector<Point> points, Color outlineColor, Color fillColor)
-    : outlineColor(outlineColor), fillColor(fillColor)
+#include <ostream>              // std::ostream
+#include <vector>               // std::vector
+
+namespace MiniCAD
 {
-    this->points = points;
-}
-
-Polygon::~Polygon()
-{
-
-}
-
-std::vector<Point> Polygon::GetPoints() const
-{
-    return points;
-}
-
-Color Polygon::GetOutlineColor() const
-{
-    return outlineColor;
-}
-
-Color Polygon::GetFillColor() const
-{
-    return fillColor;
-}
-
-void Polygon::Accept(ShapeVisitor& visitor) const
-{
-    visitor.Visit(*this);
-}
-
-std::ostream& operator<<(std::ostream& os, Polygon const& polygon)
-{
-    os << ShapeNames::Polygon;
-
-    for (Point const& p : polygon.points)
+    Polygon::Polygon(std::vector<Point> points, Color outline_color, Color fill_color)
+        : points(points), outline_color(outline_color), fill_color(fill_color)
     {
-        os << " " << p;
+        
     }
 
-    return os << " " << polygon.outlineColor << " " << polygon.fillColor;
+    Polygon::~Polygon()
+    {
+
+    }
+
+    std::vector<Point> Polygon::GetPoints() const
+    {
+        return points;
+    }
+
+    Color Polygon::GetOutlineColor() const
+    {
+        return outline_color;
+    }
+
+    Color Polygon::GetFillColor() const
+    {
+        return fill_color;
+    }
+
+    void Polygon::Accept(ShapeVisitor &visitor) const
+    {
+        visitor.Visit(*this);
+    }
+
+    std::ostream& operator<<(std::ostream &os, const Polygon &polygon)
+    {
+        os << ShapeNames::Polygon;
+
+        for (Point const& p : polygon.points)
+        {
+            os << " " << p;
+        }
+
+        return os << " " << polygon.outline_color << " " << polygon.fill_color;
+    }
 }

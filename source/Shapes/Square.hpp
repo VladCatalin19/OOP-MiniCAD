@@ -2,28 +2,34 @@
 #define MINICAD_SOURCE_SHAPES_SQUARE_HPP_INCLUDED
 
 #include "Shape.hpp"
+
 #include <Utils/Point.hpp>
 #include <Utils/Color.hpp>
 
-class Square: public Shape
+#include <ostream>              // std::ostream
+
+namespace MiniCAD
 {
-private:
-    Point topLeft;
-    int side;
-    Color outlineColor, fillColor;
+    class Square: public Shape
+    {
+    private:
+        Point top_left;
+        int side;
+        Color outline_color, fill_color;
 
-public:
-    Square(Point topLeft, int side, Color outlineColor, Color fillColor);
-    virtual ~Square();
+    public:
+        Square(Point top_left, int side, Color outline_color, Color fill_color);
+        virtual ~Square();
 
-    Point GetTopLeftPoint() const;
-    int GetSide() const;
-    Color GetOutlineColor() const;
-    Color GetFillColor() const;
+        Point GetTopLeftPoint() const;
+        int GetSide() const;
+        Color GetOutlineColor() const;
+        Color GetFillColor() const;
 
-    void Accept(ShapeVisitor& visitor) const override;
+        void Accept(ShapeVisitor &visitor) const override;
 
-    friend std::ostream& operator<<(std::ostream& os, Square const& square);
-};
+        friend std::ostream& operator<<(std::ostream &os, const Square &square);
+    };
+}
 
 #endif // MINICAD_SOURCE_SHAPES_SQUARE_HPP_INCLUDED

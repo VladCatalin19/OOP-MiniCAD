@@ -1,49 +1,56 @@
 #include "Circle.hpp"
 
 #include <ShapeVisitors/ShapeVisitor.hpp>
+#include <Utils/Color.hpp>
 #include <Utils/Constants.hpp>
 
-Circle::Circle(Point center, int radius, Color outlineColor, Color fillColor)
-    : center(center), outlineColor(outlineColor), fillColor(fillColor)
-{
-    this->radius = radius;
-}
+#include <ostream>              // std::ostream
+#include <string>               // std::to_string
 
-Circle::~Circle()
+namespace MiniCAD
 {
+    Circle::Circle(Point center, int radius, Color outline_color, Color fill_color)
+        : center(center), radius(radius), outline_color(outline_color), fill_color(fill_color)
+    {
+        
+    }
 
-}
+    Circle::~Circle()
+    {
 
-Point Circle::GetCenterPoint() const
-{
-    return center;
-}
+    }
 
-int Circle::GetRadius() const
-{
-    return radius;
-}
+    Point Circle::GetCenterPoint() const
+    {
+        return center;
+    }
 
-Color Circle::GetOutlineColor() const
-{
-    return outlineColor;
-}
+    int Circle::GetRadius() const
+    {
+        return radius;
+    }
 
-Color Circle::GetFillColor() const
-{
-    return fillColor;
-}
+    Color Circle::GetOutlineColor() const
+    {
+        return outline_color;
+    }
 
-void Circle::Accept(ShapeVisitor& visitor) const
-{
-    visitor.Visit(*this);
-}
+    Color Circle::GetFillColor() const
+    {
+        return fill_color;
+    }
 
-std::ostream& operator<<(std::ostream& os, Circle const& circle)
-{
-    return os << ShapeNames::Circle
-        << " " << circle.center
-        << " " << std::to_string(circle.radius)
-        << " " << circle.outlineColor
-        << " " << circle.fillColor;
+    void Circle::Accept(ShapeVisitor &visitor) const
+    {
+        visitor.Visit(*this);
+    }
+
+    std::ostream& operator<<(std::ostream& os, Circle const& circle)
+    {
+        return os << ShapeNames::Circle
+                  << " " << circle.center
+                  << " " << std::to_string(circle.radius)
+                  << " " << circle.outline_color
+                  << " " << circle.fill_color;
+    }
 }

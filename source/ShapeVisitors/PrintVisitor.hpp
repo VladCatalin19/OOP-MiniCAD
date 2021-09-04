@@ -12,20 +12,23 @@
 #include <Shapes/Diamond.hpp>
 #include <Shapes/Polygon.hpp>
 
-class PrintVisitor : public ShapeVisitor
+namespace MiniCAD
 {
-public:
-    PrintVisitor();
-    ~PrintVisitor();
+    class PrintVisitor : public ShapeVisitor
+    {
+    public:
+        PrintVisitor();
+        virtual ~PrintVisitor();
 
-    virtual void Visit(Canvas const& canvas) override;
-    virtual void Visit(Line const& line) override;
-    virtual void Visit(Square const& square) override;
-    virtual void Visit(Rectangle const& rectangle) override;
-    virtual void Visit(Circle const& circle) override;
-    virtual void Visit(Triangle const& triangle) override;
-    virtual void Visit(Diamond const& diamond) override;
-    virtual void Visit(Polygon const& polygon) override;
-};
+        virtual void Visit(const Canvas &canvas) override;
+        virtual void Visit(const Line &line) override;
+        virtual void Visit(const Square &square) override;
+        virtual void Visit(const Rectangle &rectangle) override;
+        virtual void Visit(const Circle &circle) override;
+        virtual void Visit(const Triangle &triangle) override;
+        virtual void Visit(const Diamond &diamond) override;
+        virtual void Visit(const Polygon &polygon) override;
+    };
+}
 
 #endif // MINICAD_SOURCE_SHAPEVISITORS_PRINTVISITOR_HPP_INCLUDED

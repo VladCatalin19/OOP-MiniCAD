@@ -2,31 +2,36 @@
 #define MINICAD_SOURCE_SHAPES_RECTANGLE_HPP_INCLUDED
 
 #include "Shape.hpp"
+
 #include <Utils/Point.hpp>
 #include <Utils/Color.hpp>
-#include <ostream>
 
-class Rectangle: public Shape
+#include <ostream>              // std::ostream
+
+namespace MiniCAD
 {
-private:
-    Point topLeft;
-    int height, width;
-    Color outlineColor, fillColor;
+    class Rectangle: public Shape
+    {
+    private:
+        Point top_left;
+        int height, width;
+        Color outline_color, fill_color;
 
-public:
-    Rectangle(Point topLeft, int height, int width, Color outlineColor,
-        Color fillColor);
-    ~Rectangle();
+    public:
+        Rectangle(Point top_left, int height, int width, Color outline_color,
+                  Color fill_color);
+        ~Rectangle();
 
-    Point GetTopLeftPoint() const;
-    int GetHeight() const;
-    int GetWidth() const;
-    Color GetOutlineColor() const;
-    Color GetFillColor() const;
+        Point GetTopLeftPoint() const;
+        int GetHeight() const;
+        int GetWidth() const;
+        Color GetOutlineColor() const;
+        Color GetFillColor() const;
 
-    void Accept(ShapeVisitor& visitor) const override;
+        void Accept(ShapeVisitor &visitor) const override;
 
-    friend std::ostream& operator<<(std::ostream& os, Rectangle const& rectangle);
-};
+        friend std::ostream& operator<<(std::ostream &os, const Rectangle &rectangle);
+    };
+}
 
 #endif // MINICAD_SOURCE_SHAPES_RECTANGLE_HPP_INCLUDED

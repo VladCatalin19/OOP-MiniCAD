@@ -1,26 +1,29 @@
 #ifndef MINICAD_SOURCE_SHAPEFACTORY_SHAPEFACTORY_HPP_INCLUDED
 #define MINICAD_SOURCE_SHAPEFACTORY_SHAPEFACTORY_HPP_INCLUDED
 
-#include <string>
+#include <Shapes/Shape.hpp>
 
-class Shape;
+#include <string>               // std::string
 
-class ShapeFactory
+namespace MiniCAD
 {
-private:
-    ShapeFactory() {}
-
-public:
-    static ShapeFactory& GetInstance()
+    class ShapeFactory
     {
-        static ShapeFactory instance;
-        return instance;
-    }
+    private:
+        ShapeFactory() {}
 
-    ShapeFactory(ShapeFactory const&) = delete;
-    void operator=(ShapeFactory const&) = delete;
+    public:
+        static ShapeFactory& GetInstance()
+        {
+            static ShapeFactory instance;
+            return instance;
+        }
 
-    Shape* CreateShape(std::string const& line) const;
-};
+        ShapeFactory(const ShapeFactory &) = delete;
+        void operator=(const ShapeFactory &) = delete;
+
+        Shape *CreateShape(const std::string &line) const;
+    };
+}
 
 #endif // MINICAD_SOURCE_SHAPEFACTORY_SHAPEFACTORY_HPP_INCLUDED

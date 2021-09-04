@@ -9,10 +9,10 @@ int main(int argc, char** argv)
     if (argc != 3)
     {
         std::cout << "Usage: " << argv[0] << " <input file> <output file>\n";
-        return Errors::NotEnoughArguments;
+        return MiniCAD::Errors::NotEnoughArguments;
     }
 
-    App app = App();
+    MiniCAD::App app = MiniCAD::App();
     app.ReadFromFile(argv[1]);
     app.Run();
     app.WriteToFile(argv[2]);

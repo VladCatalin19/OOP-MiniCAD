@@ -12,13 +12,13 @@
 
 #include <Utils/Constants.hpp>
 
-#include <sstream>
 #include <cstdlib>
-#include <vector>
-#include <string>
 #include <stdexcept>
+#include <sstream>              // std::stringstream
+#include <string>               // std::string
+#include <vector>               // std::vector
 
-static Color ParseColor(std::string const& rgb, std::string const& alpha)
+static MiniCAD::Color ParseColor(const std::string &rgb, const std::string &alpha)
 {
     unsigned long n = std::stoul(rgb.substr(1, rgb.size() - 1), nullptr, 16);
 
@@ -26,19 +26,19 @@ static Color ParseColor(std::string const& rgb, std::string const& alpha)
     unsigned char g = (n & 0x00FF00) >> 8;
     unsigned char b = n & 0x0000FF;
     unsigned char a = std::stoi(alpha);
-    return Color(r, g, b, a);
+    return MiniCAD::Color(r, g, b, a);
 }
 
-static Canvas* CreateCanvas(std::vector<std::string> const& lineSplit)
+static MiniCAD::Canvas* CreateCanvas(const std::vector<std::string> &line_split)
 {
-    Canvas* canvas = nullptr;
+    MiniCAD::Canvas *canvas = nullptr;
 
     try
     {
-        int height = std::stoi(lineSplit[1]);
-        int width = std::stoi(lineSplit[2]);
-        Color color = ParseColor(lineSplit[3], lineSplit[4]);
-        canvas = new Canvas(height, width, color);
+        int height = std::stoi(line_split[1]);
+        int width = std::stoi(line_split[2]);
+        MiniCAD::Color color = ParseColor(line_split[3], line_split[4]);
+        canvas = new MiniCAD::Canvas(height, width, color);
     }
     catch (...)
     {
@@ -48,16 +48,16 @@ static Canvas* CreateCanvas(std::vector<std::string> const& lineSplit)
     return canvas;
 }
 
-static Line* CreateLine(std::vector<std::string> const& lineSplit)
+static MiniCAD::Line* CreateLine(const std::vector<std::string> &line_split)
 {
-    Line* line = nullptr;
+    MiniCAD::Line *line = nullptr;
 
     try
     {
-        Point p0 = Point(std::stoi(lineSplit[1]), std::stoi(lineSplit[2]));
-        Point p1 = Point(std::stoi(lineSplit[3]), std::stoi(lineSplit[4]));
-        Color color = ParseColor(lineSplit[5], lineSplit[6]);
-        line = new Line(p0, p1, color);
+        MiniCAD::Point p0 = MiniCAD::Point(std::stoi(line_split[1]), std::stoi(line_split[2]));
+        MiniCAD::Point p1 = MiniCAD::Point(std::stoi(line_split[3]), std::stoi(line_split[4]));
+        MiniCAD::Color color = ParseColor(line_split[5], line_split[6]);
+        line = new MiniCAD::Line(p0, p1, color);
     }
     catch (...)
     {
@@ -67,17 +67,17 @@ static Line* CreateLine(std::vector<std::string> const& lineSplit)
     return line;
 }
 
-static Square* CreateSquare(std::vector<std::string> const& lineSplit)
+static MiniCAD::Square* CreateSquare(const std::vector<std::string> &line_split)
 {
-    Square* square = nullptr;
+    MiniCAD::Square *square = nullptr;
 
     try
     {
-        Point topLeft = Point(std::stoi(lineSplit[1]), std::stoi(lineSplit[2]));
-        int side = std::stoi(lineSplit[3]);
-        Color outlineColor = ParseColor(lineSplit[4], lineSplit[5]);
-        Color fillColor = ParseColor(lineSplit[6], lineSplit[7]);
-        square = new Square(topLeft, side, outlineColor, fillColor);
+        MiniCAD::Point top_left = MiniCAD::Point(std::stoi(line_split[1]), std::stoi(line_split[2]));
+        int side = std::stoi(line_split[3]);
+        MiniCAD::Color outline_color = ParseColor(line_split[4], line_split[5]);
+        MiniCAD::Color fill_color = ParseColor(line_split[6], line_split[7]);
+        square = new MiniCAD::Square(top_left, side, outline_color, fill_color);
     }
     catch (...)
     {
@@ -87,18 +87,18 @@ static Square* CreateSquare(std::vector<std::string> const& lineSplit)
     return square;
 }
 
-static Rectangle* CreateRectangle(std::vector<std::string> const& lineSplit)
+static MiniCAD::Rectangle* CreateRectangle(const std::vector<std::string> &line_split)
 {
-    Rectangle* rectangle = nullptr;
+    MiniCAD::Rectangle *rectangle = nullptr;
 
     try
     {
-        Point topLeft = Point(std::stoi(lineSplit[1]), std::stoi(lineSplit[2]));
-        int height = std::stoi(lineSplit[3]);
-        int width = std::stoi(lineSplit[4]);
-        Color outlineColor = ParseColor(lineSplit[5], lineSplit[6]);
-        Color fillColor = ParseColor(lineSplit[7], lineSplit[8]);
-        rectangle = new Rectangle(topLeft, height, width, outlineColor, fillColor);
+        MiniCAD::Point top_left = MiniCAD::Point(std::stoi(line_split[1]), std::stoi(line_split[2]));
+        int height = std::stoi(line_split[3]);
+        int width = std::stoi(line_split[4]);
+        MiniCAD::Color outline_color = ParseColor(line_split[5], line_split[6]);
+        MiniCAD::Color fill_color = ParseColor(line_split[7], line_split[8]);
+        rectangle = new MiniCAD::Rectangle(top_left, height, width, outline_color, fill_color);
     }
     catch (...)
     {
@@ -108,17 +108,17 @@ static Rectangle* CreateRectangle(std::vector<std::string> const& lineSplit)
     return rectangle;
 }
 
-static Circle* CreateCircle(std::vector<std::string> const& lineSplit)
+static MiniCAD::Circle* CreateCircle(const std::vector<std::string> &line_split)
 {
-    Circle* circle = nullptr;
+    MiniCAD::Circle *circle = nullptr;
 
     try
     {
-        Point center = Point(std::stoi(lineSplit[1]), std::stoi(lineSplit[2]));
-        int radius = std::stoi(lineSplit[3]);
-        Color outlineColor = ParseColor(lineSplit[4], lineSplit[5]);
-        Color fillColor = ParseColor(lineSplit[6], lineSplit[7]);
-        circle = new Circle(center, radius, outlineColor, fillColor);
+        MiniCAD::Point center = MiniCAD::Point(std::stoi(line_split[1]), std::stoi(line_split[2]));
+        int radius = std::stoi(line_split[3]);
+        MiniCAD::Color outline_color = ParseColor(line_split[4], line_split[5]);
+        MiniCAD::Color fill_color = ParseColor(line_split[6], line_split[7]);
+        circle = new MiniCAD::Circle(center, radius, outline_color, fill_color);
     }
     catch (...)
     {
@@ -128,18 +128,18 @@ static Circle* CreateCircle(std::vector<std::string> const& lineSplit)
     return circle;
 }
 
-static Triangle* CreateTriangle(std::vector<std::string> const& lineSplit)
+static MiniCAD::Triangle* CreateTriangle(const std::vector<std::string> &line_split)
 {
-    Triangle* triangle = nullptr;
+    MiniCAD::Triangle *triangle = nullptr;
 
     try
     {
-        Point p0 = Point(std::stoi(lineSplit[1]), std::stoi(lineSplit[2]));
-        Point p1 = Point(std::stoi(lineSplit[3]), std::stoi(lineSplit[4]));
-        Point p2 = Point(std::stoi(lineSplit[5]), std::stoi(lineSplit[6]));
-        Color outlineColor = ParseColor(lineSplit[7], lineSplit[8]);
-        Color fillColor = ParseColor(lineSplit[9], lineSplit[10]);
-        triangle = new Triangle(p0, p1, p2, outlineColor, fillColor);
+        MiniCAD::Point p0 = MiniCAD::Point(std::stoi(line_split[1]), std::stoi(line_split[2]));
+        MiniCAD::Point p1 = MiniCAD::Point(std::stoi(line_split[3]), std::stoi(line_split[4]));
+        MiniCAD::Point p2 = MiniCAD::Point(std::stoi(line_split[5]), std::stoi(line_split[6]));
+        MiniCAD::Color outline_color = ParseColor(line_split[7], line_split[8]);
+        MiniCAD::Color fill_color = ParseColor(line_split[9], line_split[10]);
+        triangle = new MiniCAD::Triangle(p0, p1, p2, outline_color, fill_color);
     }
     catch (...)
     {
@@ -149,18 +149,18 @@ static Triangle* CreateTriangle(std::vector<std::string> const& lineSplit)
     return triangle;
 }
 
-static Diamond* CreateDiamond(std::vector<std::string> const& lineSplit)
+static MiniCAD::Diamond* CreateDiamond(const std::vector<std::string> &line_split)
 {
-    Diamond* diamond = nullptr;
+    MiniCAD::Diamond *diamond = nullptr;
 
     try
     {
-        Point center = Point(std::stoi(lineSplit[1]), std::stoi(lineSplit[2]));
-        int horizDiag = std::stoi(lineSplit[3]);
-        int vertDiag = std::stoi(lineSplit[4]);
-        Color outlineColor = ParseColor(lineSplit[5], lineSplit[6]);
-        Color fillColor = ParseColor(lineSplit[7], lineSplit[8]);
-        diamond = new Diamond(center, horizDiag, vertDiag, outlineColor, fillColor);
+        MiniCAD::Point center = MiniCAD::Point(std::stoi(line_split[1]), std::stoi(line_split[2]));
+        int horiz_diag = std::stoi(line_split[3]);
+        int vert_diag = std::stoi(line_split[4]);
+        MiniCAD::Color outline_color = ParseColor(line_split[5], line_split[6]);
+        MiniCAD::Color fill_color = ParseColor(line_split[7], line_split[8]);
+        diamond = new MiniCAD::Diamond(center, horiz_diag, vert_diag, outline_color, fill_color);
     }
     catch (...)
     {
@@ -170,27 +170,27 @@ static Diamond* CreateDiamond(std::vector<std::string> const& lineSplit)
     return diamond;
 }
 
-static Polygon* CreatePolygon(std::vector<std::string> const& lineSplit)
+static MiniCAD::Polygon* CreatePolygon(const std::vector<std::string> &line_split)
 {
-    Polygon* polygon = nullptr;
+    MiniCAD::Polygon *polygon = nullptr;
 
     try
     {
-        std::vector<Point> points = std::vector<Point>();
-        int pointsNum = std::stoi(lineSplit[1]);
+        std::vector<MiniCAD::Point> points = std::vector<MiniCAD::Point>();
+        int points_num = std::stoi(line_split[1]);
 
-        points.reserve(pointsNum);
-        for (int i = 2; i < static_cast<int>(lineSplit.size()) - 4; i += 2)
+        points.reserve(points_num);
+        for (int i = 2; i < static_cast<int>(line_split.size()) - 4; i += 2)
         {
-            Point p = Point(std::stoi(lineSplit[i]), std::stoi(lineSplit[i + 1]));
+            MiniCAD::Point p = MiniCAD::Point(std::stoi(line_split[i]), std::stoi(line_split[i + 1]));
             points.push_back(p);
         }
 
-        int colIdx = lineSplit.size() - 4;
-        Color outlineColor = ParseColor(lineSplit[colIdx], lineSplit[colIdx + 1]);
-        Color fillColor = ParseColor(lineSplit[colIdx + 2], lineSplit[colIdx + 3]);
+        int col_idx = line_split.size() - 4;
+        MiniCAD::Color outline_color = ParseColor(line_split[col_idx], line_split[col_idx + 1]);
+        MiniCAD::Color fill_color = ParseColor(line_split[col_idx + 2], line_split[col_idx + 3]);
 
-        polygon = new Polygon(points, outlineColor, fillColor);
+        polygon = new MiniCAD::Polygon(points, outline_color, fill_color);
     }
     catch (...)
     {
@@ -200,7 +200,7 @@ static Polygon* CreatePolygon(std::vector<std::string> const& lineSplit)
     return polygon;
 }
 
-static std::vector<std::string> SplitString(std::string const& str, char delim)
+static std::vector<std::string> SplitString(const std::string &str, char delim)
 {
     std::stringstream ss(str);
     std::vector<std::string> split = std::vector<std::string>();
@@ -213,48 +213,51 @@ static std::vector<std::string> SplitString(std::string const& str, char delim)
     return split;
 }
 
-Shape* ShapeFactory::CreateShape(std::string const& line) const
+namespace MiniCAD
 {
-    Shape* shape = nullptr;
-    std::vector<std::string> lineSplits = SplitString(line, LineProperties::Delimitator);
+    Shape *ShapeFactory::CreateShape(const std::string &line) const
+    {
+        Shape *shape = nullptr;
+        std::vector<std::string> line_splits = SplitString(line, LineProperties::Delimitator);
 
-    if (lineSplits.size() == 0)
-    {
-        return nullptr;
-    }
+        if (line_splits.size() == 0)
+        {
+            return nullptr;
+        }
 
-    if (lineSplits[0].compare(ShapeNames::Canvas) == 0)
-    {
-        shape = CreateCanvas(lineSplits);
-    }
-    else if (lineSplits[0].compare(ShapeNames::Line) == 0)
-    {
-        shape = CreateLine(lineSplits);
-    }
-    else if (lineSplits[0].compare(ShapeNames::Square) == 0)
-    {
-        shape = CreateSquare(lineSplits);
-    }
-    else if (lineSplits[0].compare(ShapeNames::Rectangle) == 0)
-    {
-        shape = CreateRectangle(lineSplits);
-    }
-    else if (lineSplits[0].compare(ShapeNames::Circle) == 0)
-    {
-        shape = CreateCircle(lineSplits);
-    }
-    else if (lineSplits[0].compare(ShapeNames::Triangle) == 0)
-    {
-        shape = CreateTriangle(lineSplits);
-    }
-    else if (lineSplits[0].compare(ShapeNames::Diamond) == 0)
-    {
-        shape = CreateDiamond(lineSplits);
-    }
-    else if (lineSplits[0].compare(ShapeNames::Polygon) == 0)
-    {
-        shape = CreatePolygon(lineSplits);
-    }
+        if (line_splits[0].compare(ShapeNames::Canvas) == 0)
+        {
+            shape = CreateCanvas(line_splits);
+        }
+        else if (line_splits[0].compare(ShapeNames::Line) == 0)
+        {
+            shape = CreateLine(line_splits);
+        }
+        else if (line_splits[0].compare(ShapeNames::Square) == 0)
+        {
+            shape = CreateSquare(line_splits);
+        }
+        else if (line_splits[0].compare(ShapeNames::Rectangle) == 0)
+        {
+            shape = CreateRectangle(line_splits);
+        }
+        else if (line_splits[0].compare(ShapeNames::Circle) == 0)
+        {
+            shape = CreateCircle(line_splits);
+        }
+        else if (line_splits[0].compare(ShapeNames::Triangle) == 0)
+        {
+            shape = CreateTriangle(line_splits);
+        }
+        else if (line_splits[0].compare(ShapeNames::Diamond) == 0)
+        {
+            shape = CreateDiamond(line_splits);
+        }
+        else if (line_splits[0].compare(ShapeNames::Polygon) == 0)
+        {
+            shape = CreatePolygon(line_splits);
+        }
 
-    return shape;
+        return shape;
+    }
 }

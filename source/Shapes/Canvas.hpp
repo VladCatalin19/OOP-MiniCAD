@@ -2,25 +2,30 @@
 #define MINICAD_SOURCE_SHAPES_CANVAS_HPP_INCLUDED
 
 #include "Shape.hpp"
+
 #include <Utils/Color.hpp>
-#include <ostream>
 
-class Canvas: public Shape
+#include <ostream>              // std::ostream
+
+namespace MiniCAD
 {
-private:
-    int height, width;
-    Color color;
+    class Canvas: public Shape
+    {
+    private:
+        int height, width;
+        Color color;
 
-public:
-    Canvas(int height, int width, Color color);
-    virtual ~Canvas();
+    public:
+        Canvas(int height, int width, Color color);
+        virtual ~Canvas();
 
-    int GetHeight() const;
-    int GetWidth() const;
-    Color GetColor() const;
+        int GetHeight() const;
+        int GetWidth() const;
+        Color GetColor() const;
 
-    void Accept(ShapeVisitor& visitor) const override;
-    friend std::ostream& operator<<(std::ostream& os, Canvas const& canvas);
-};
+        void Accept(ShapeVisitor &visitor) const override;
+        friend std::ostream& operator<<(std::ostream &os, const Canvas &canvas);
+    };
+}
 
 #endif // MINICAD_SOURCE_SHAPES_CANVAS_HPP_INCLUDED

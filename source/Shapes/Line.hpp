@@ -2,27 +2,32 @@
 #define MINICAD_SOURCE_SHAPES_LINE_HPP_INCLUDED
 
 #include "Shape.hpp"
+
 #include <Utils/Point.hpp>
 #include <Utils/Color.hpp>
-#include <ostream>
 
-class Line: public Shape
+#include <ostream>              // std::ostream
+
+namespace MiniCAD
 {
-private:
-    Point p0, p1;
-    Color color;
+    class Line: public Shape
+    {
+    private:
+        Point p0, p1;
+        Color color;
 
-public:
-    Line(Point p0, Point p1, Color color);
-    virtual ~Line();
+    public:
+        Line(Point p0, Point p1, Color color);
+        virtual ~Line();
 
-    Point GetP0() const;
-    Point GetP1() const;
-    Color GetColor() const;
+        Point GetP0() const;
+        Point GetP1() const;
+        Color GetColor() const;
 
-    void Accept(ShapeVisitor& visitor) const override;
+        void Accept(ShapeVisitor &visitor) const override;
 
-    friend std::ostream& operator<<(std::ostream& os , Line const& line);
-};
+        friend std::ostream& operator<<(std::ostream &os , const Line &line);
+    };
+}
 
 #endif // MINICAD_SOURCE_SHAPES_LINE_HPP_INCLUDED

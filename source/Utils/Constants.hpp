@@ -1,33 +1,34 @@
-#pragma once
+#ifndef MINICAD_SOURCE_UTILS_CONSTANTS_HPP_INCLUDED
+#define MINICAD_SOURCE_UTILS_CONSTANTS_HPP_INCLUDED
 
-#include <string>
-
-namespace LineProperties
+namespace MiniCAD::LineProperties
 {
-    const char Delimitator = ' ';
+    constexpr inline char Delimitator = ' ';
 }
 
-namespace ShapeNames
+namespace MiniCAD::ShapeNames
 {
-    const std::string Canvas = "CANVAS";
-    const std::string Line = "LINE";
-    const std::string Square = "SQUARE";
-    const std::string Rectangle = "RECTANGLE";
-    const std::string Circle = "CIRCLE";
-    const std::string Triangle = "TRIANGLE";
-    const std::string Diamond = "DIAMOND";
-    const std::string Polygon = "POLYGON";
+    constexpr inline char Canvas[] = "CANVAS";
+    constexpr inline char Line[] = "LINE";
+    constexpr inline char Square[] = "SQUARE";
+    constexpr inline char Rectangle[] = "RECTANGLE";
+    constexpr inline char Circle[] = "CIRCLE";
+    constexpr inline char Triangle[] = "TRIANGLE";
+    constexpr inline char Diamond[] = "DIAMOND";
+    constexpr inline char Polygon[] = "POLYGON";
 }
 
-namespace Errors
+namespace MiniCAD::Errors
 {
-    const int NotEnoughArguments = 1;
+    constexpr inline int NotEnoughArguments = 1;
 }
 
-namespace ErrorMessages
+namespace MiniCAD::ErrorMessages
 {
-    const std::string CouldNotOpenFile = "Could not open file";
-    const std::string CouldNotReadShapesNum = "Could not read number of shapes";
-    const std::string InvalidShape = "Invalid shape";
-    const std::string InvalidFillStartingPoint = "Invalid starting point for flood fill";
+    constexpr inline char CouldNotOpenFile[] = "Could not open file";
+    constexpr inline char CouldNotReadShapesNum[] = "Could not read number of shapes";
+    constexpr inline char InvalidShape[] = "Invalid shape";
+    constexpr inline char InvalidFillStartingPoint[] = "Invalid starting point for flood fill";
 }
+
+#endif // MINICAD_SOURCE_UTILS_CONSTANTS_HPP_INCLUDED
