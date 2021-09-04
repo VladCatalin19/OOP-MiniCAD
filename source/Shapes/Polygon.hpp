@@ -11,20 +11,20 @@
 class Polygon: public Shape
 {
 private:
-	std::vector<Point> points;
-	Color outlineColor, fillColor;
+    std::vector<Point> points;
+    Color outlineColor, fillColor;
 
 public:
-	Polygon(std::vector<Point> points, Color outlineColor, Color fillColor);
-	virtual ~Polygon();
+    Polygon(std::vector<Point> points, Color outlineColor, Color fillColor);
+    virtual ~Polygon();
 
-	std::vector<Point> GetPoints() const;
-	Color GetOutlineColor() const;
-	Color GetFillColor() const;
+    std::vector<Point> GetPoints() const;
+    Color GetOutlineColor() const;
+    Color GetFillColor() const;
 
-	void Accept(ShapeVisitor& visitor) const override;
+    void Accept(ShapeVisitor& visitor) const override;
 
-	friend std::ostream& operator<<(std::ostream& os, Polygon const& polygon);
+    friend std::ostream& operator<<(std::ostream& os, Polygon const& polygon);
 };
 
 #endif // MINICAD_SOURCE_SHAPES_POLYGON_HPP_INCLUDED

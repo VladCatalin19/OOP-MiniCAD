@@ -14,28 +14,28 @@ Line::~Line()
 
 Point Line::GetP0() const
 {
-	return p0;
+    return p0;
 }
 
 Point Line::GetP1() const
 {
-	return p1;
+    return p1;
 }
 
 Color Line::GetColor() const
 {
-	return color;
+    return color;
 }
 
 void Line::Accept(ShapeVisitor& visitor) const
 {
-	visitor.Visit(*this);
+    visitor.Visit(*this);
 }
 
 std::ostream& operator<<(std::ostream& os , Line const& line)
 {
-	return os << ShapeNames::Line
-		<< " " << line.p0
-		<< " " << line.p1
-		<< " " << line.color;
+    return os << ShapeNames::Line
+        << " " << line.p0
+        << " " << line.p1
+        << " " << line.color;
 }

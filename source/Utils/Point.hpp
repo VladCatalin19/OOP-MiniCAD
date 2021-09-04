@@ -6,11 +6,11 @@
 
 struct Point
 {
-	int x, y;
-	Point(int x, int y);
-	~Point();
+    int x, y;
+    Point(int x, int y);
+    ~Point();
 
-	friend std::ostream& operator<<(std::ostream& os, Point const& point);
+    friend std::ostream& operator<<(std::ostream& os, Point const& point);
 };
 
 #endif // MINICAD_SOURCE_UTILS_POINT_HPP_INCLUDED

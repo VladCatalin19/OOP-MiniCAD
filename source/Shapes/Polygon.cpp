@@ -4,9 +4,9 @@
 #include <Utils/Constants.hpp>
 
 Polygon::Polygon(std::vector<Point> points, Color outlineColor, Color fillColor)
-	: outlineColor(outlineColor), fillColor(fillColor)
+    : outlineColor(outlineColor), fillColor(fillColor)
 {
-	this->points = points;
+    this->points = points;
 }
 
 Polygon::~Polygon()
@@ -16,32 +16,32 @@ Polygon::~Polygon()
 
 std::vector<Point> Polygon::GetPoints() const
 {
-	return points;
+    return points;
 }
 
 Color Polygon::GetOutlineColor() const
 {
-	return outlineColor;
+    return outlineColor;
 }
 
 Color Polygon::GetFillColor() const
 {
-	return fillColor;
+    return fillColor;
 }
 
 void Polygon::Accept(ShapeVisitor& visitor) const
 {
-	visitor.Visit(*this);
+    visitor.Visit(*this);
 }
 
 std::ostream& operator<<(std::ostream& os, Polygon const& polygon)
 {
-	os << ShapeNames::Polygon;
+    os << ShapeNames::Polygon;
 
-	for (Point const& p : polygon.points)
-	{
-		os << " " << p;
-	}
+    for (Point const& p : polygon.points)
+    {
+        os << " " << p;
+    }
 
-	return os << " " << polygon.outlineColor << " " << polygon.fillColor;
+    return os << " " << polygon.outlineColor << " " << polygon.fillColor;
 }

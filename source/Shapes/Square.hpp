@@ -8,22 +8,22 @@
 class Square: public Shape
 {
 private:
-	Point topLeft;
-	int side;
-	Color outlineColor, fillColor;
+    Point topLeft;
+    int side;
+    Color outlineColor, fillColor;
 
 public:
-	Square(Point topLeft, int side, Color outlineColor, Color fillColor);
-	virtual ~Square();
+    Square(Point topLeft, int side, Color outlineColor, Color fillColor);
+    virtual ~Square();
 
-	Point GetTopLeftPoint() const;
-	int GetSide() const;
-	Color GetOutlineColor() const;
-	Color GetFillColor() const;
+    Point GetTopLeftPoint() const;
+    int GetSide() const;
+    Color GetOutlineColor() const;
+    Color GetFillColor() const;
 
-	void Accept(ShapeVisitor& visitor) const override;
+    void Accept(ShapeVisitor& visitor) const override;
 
-	friend std::ostream& operator<<(std::ostream& os, Square const& square);
+    friend std::ostream& operator<<(std::ostream& os, Square const& square);
 };
 
 #endif // MINICAD_SOURCE_SHAPES_SQUARE_HPP_INCLUDED

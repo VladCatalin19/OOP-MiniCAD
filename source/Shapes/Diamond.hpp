@@ -9,24 +9,24 @@
 class Diamond: public Shape
 {
 private:
-	Point center;
-	int horizontalDiagonal, verticalDiagonal;
-	Color outlineColor, fillColor;
+    Point center;
+    int horizontalDiagonal, verticalDiagonal;
+    Color outlineColor, fillColor;
 
 public:
-	Diamond(Point center, int horizontalDiagonal, int verticalDiagonal,
-		Color outlineColor, Color fillColor);
-	virtual ~Diamond();
+    Diamond(Point center, int horizontalDiagonal, int verticalDiagonal,
+        Color outlineColor, Color fillColor);
+    virtual ~Diamond();
 
-	Point GetCenterPoint() const;
-	int GetHorizontalDiagonal() const;
-	int GetVerticalDiagonal() const;
-	Color GetOutlineColor() const;
-	Color GetFillColor() const;
+    Point GetCenterPoint() const;
+    int GetHorizontalDiagonal() const;
+    int GetVerticalDiagonal() const;
+    Color GetOutlineColor() const;
+    Color GetFillColor() const;
 
-	void Accept(ShapeVisitor& visitor) const override;
+    void Accept(ShapeVisitor& visitor) const override;
 
-	friend std::ostream& operator<<(std::ostream& os, Diamond const& diamond);
+    friend std::ostream& operator<<(std::ostream& os, Diamond const& diamond);
 };
 
 #endif // MINICAD_SOURCE_SHAPES_DIAMOND_HPP_INCLUDED

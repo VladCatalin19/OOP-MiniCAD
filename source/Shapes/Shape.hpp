@@ -8,8 +8,8 @@ class ShapeVisitor;
 class Shape
 {
 public:
-	virtual ~Shape() {}
-	virtual void Accept(ShapeVisitor& visitor) const = 0;
+    virtual ~Shape() {}
+    virtual void Accept(ShapeVisitor& visitor) const = 0;
 };
 
 #endif // MINICAD_SOURCE_SHAPES_SHAPE_HPP_INCLUDED

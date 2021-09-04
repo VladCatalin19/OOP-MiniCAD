@@ -4,11 +4,11 @@
 #include <Utils/Constants.hpp>
 
 Diamond::Diamond(Point center, int horizontalDiagonal, int verticalDiagonal,
-	Color outlineColor, Color fillColor)
-	: center(center), outlineColor(outlineColor), fillColor(fillColor)
+    Color outlineColor, Color fillColor)
+    : center(center), outlineColor(outlineColor), fillColor(fillColor)
 {
-	this->horizontalDiagonal = horizontalDiagonal;
-	this->verticalDiagonal = verticalDiagonal;
+    this->horizontalDiagonal = horizontalDiagonal;
+    this->verticalDiagonal = verticalDiagonal;
 }
 
 Diamond::~Diamond()
@@ -18,40 +18,40 @@ Diamond::~Diamond()
 
 Point Diamond::GetCenterPoint() const
 {
-	return center;
+    return center;
 }
 
 int Diamond::GetHorizontalDiagonal() const
 {
-	return horizontalDiagonal;
+    return horizontalDiagonal;
 }
 
 int Diamond::GetVerticalDiagonal() const
 {
-	return verticalDiagonal;
+    return verticalDiagonal;
 }
 
 Color Diamond::GetOutlineColor() const
 {
-	return outlineColor;
+    return outlineColor;
 }
 
 Color Diamond::GetFillColor() const
 {
-	return fillColor;
+    return fillColor;
 }
 
 void Diamond::Accept(ShapeVisitor& visitor) const
 {
-	visitor.Visit(*this);
+    visitor.Visit(*this);
 }
 
 std::ostream& operator<<(std::ostream& os, Diamond const& diamond)
 {
-	return os << ShapeNames::Diamond
-		<< " " << diamond.center
-		<< " " << std::to_string(diamond.horizontalDiagonal)
-		<< " " << std::to_string(diamond.verticalDiagonal)
-		<< " " << diamond.outlineColor
-		<< " " << diamond.fillColor;
+    return os << ShapeNames::Diamond
+        << " " << diamond.center
+        << " " << std::to_string(diamond.horizontalDiagonal)
+        << " " << std::to_string(diamond.verticalDiagonal)
+        << " " << diamond.outlineColor
+        << " " << diamond.fillColor;
 }

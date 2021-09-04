@@ -4,9 +4,9 @@
 #include <Utils/Constants.hpp>
 
 Square::Square(Point topLeft, int side, Color outlineColor, Color fillColor)
-	: topLeft(topLeft), outlineColor(outlineColor), fillColor(fillColor)
+    : topLeft(topLeft), outlineColor(outlineColor), fillColor(fillColor)
 {
-	this->side = side;
+    this->side = side;
 }
 
 Square::~Square()
@@ -16,34 +16,34 @@ Square::~Square()
 
 Point Square::GetTopLeftPoint() const
 {
-	return topLeft;
+    return topLeft;
 }
 
 int Square::GetSide() const
 {
-	return side;
+    return side;
 }
 
 Color Square::GetOutlineColor() const
 {
-	return outlineColor;
+    return outlineColor;
 }
 
 Color Square::GetFillColor() const
 {
-	return fillColor;
+    return fillColor;
 }
 
 void Square::Accept(ShapeVisitor& visitor) const
 {
-	visitor.Visit(*this);
+    visitor.Visit(*this);
 }
 
 std::ostream& operator<<(std::ostream& os, Square const& square)
 {
-	return os << ShapeNames::Square
-		<< " " << square.topLeft
-		<< " " << square.side
-		<< " " << square.outlineColor
-		<< " " << square.fillColor;
+    return os << ShapeNames::Square
+        << " " << square.topLeft
+        << " " << square.side
+        << " " << square.outlineColor
+        << " " << square.fillColor;
 }
