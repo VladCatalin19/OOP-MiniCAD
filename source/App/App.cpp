@@ -7,6 +7,8 @@
 #include <ShapeVisitors/PrintVisitor.hpp>
 
 #include <fstream>				// std::ifstream
+#include <memory>               // std::make_unique, std::unique_ptr, std::move
+#include <stdexcept>            // std::invalid_argument, std::out_of_range
 #include <string>				// std::string
 #include <vector>				// std::vector
 
@@ -32,14 +34,14 @@ namespace MiniCAD
         OpenFileAndGetStream(filen_name, input_stream);
         ReadShapes(input_stream, ReadNumberOfShapes(input_stream));
 
-        draw_visitor = new DrawVisitor();
+        draw_visitor = std::make_unique<DrawVisitor>();
     }
 
     void App::Run()
     {
-        for (Shape *s : shapes)
+        for (const auto &shape : shapes)
         {
-            s->Accept(*draw_visitor);
+            shape->Accept(*draw_visitor);
         }
     }
 
@@ -50,23 +52,18 @@ namespace MiniCAD
 
     void App::ClearShapesArray()
     {
-        for (Shape *s : shapes)
-        {
-            delete s;
-        }
         shapes.clear();
     }
 
     void App::ClearDrawVisitor()
     {
-        delete draw_visitor;
         draw_visitor = nullptr;
     }
 
     void App::OpenFileAndGetStream(std::string file_name, std::ifstream &input_stream)
     {
         input_stream = std::ifstream(file_name);
-        if (!input_stream)
+        if (input_stream.fail())
         {
             throw std::invalid_argument(std::string(ErrorMessages::CouldNotOpenFile) + " " + file_name);
         }
@@ -81,7 +78,11 @@ namespace MiniCAD
         {
             shapes_num = std::stoi(tmp);
         }
-        catch (...)
+        catch (const std::invalid_argument &)
+        {
+            throw std::runtime_error(ErrorMessages::CouldNotReadShapesNum);
+        }
+        catch (const std::out_of_range &)
         {
             throw std::runtime_error(ErrorMessages::CouldNotReadShapesNum);
         }
@@ -90,8 +91,8 @@ namespace MiniCAD
 
     void App::ReadShapes(std::ifstream &input_stream, int shapes_num)
     {
-        shapes = std::vector<Shape*>();
-        shapes.reserve(shapes_num);
+        shapes.clear();
+        shapes.reserve(static_cast<std::size_t>(shapes_num));
 
         for (int i = 0; i < shapes_num; ++i)
         {
@@ -102,17 +103,17 @@ namespace MiniCAD
     void App::ReadShapeAndAddItToShapeArray(std::ifstream& input_stream)
     {
         ShapeFactory &shape_factory = ShapeFactory::GetInstance();
-        std::string tmp;
-        std::getline(input_stream, tmp);
-        Shape *shape = shape_factory.CreateShape(tmp);
+        std::string line;
+        std::getline(input_stream, line);
+        std::unique_ptr<Shape> shape = shape_factory.CreateShape(line);
 
         if (shape == nullptr)
         {
-            throw std::invalid_argument(std::string(ErrorMessages::InvalidShape) + " " + tmp + " ");
+            throw std::invalid_argument(std::string(ErrorMessages::InvalidShape) + " " + line + " ");
         }
         else
         {
-            shapes.push_back(shape);
+            shapes.push_back(std::move(shape));
         }
     }
 }

@@ -12,7 +12,7 @@ int main(int argc, char** argv)
         return MiniCAD::Errors::NotEnoughArguments;
     }
 
-    MiniCAD::App app = MiniCAD::App();
+    MiniCAD::App app;
     app.ReadFromFile(argv[1]);
     app.Run();
     app.WriteToFile(argv[2]);

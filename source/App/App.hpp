@@ -5,6 +5,7 @@
 #include <ShapeVisitors/DrawVisitor.hpp>
 
 #include <fstream>				// std::ifstream
+#include <memory>               // std::unique_ptr
 #include <string>				// std::string
 #include <vector>				// std::vector
 
@@ -13,8 +14,8 @@ namespace MiniCAD
     class App
     {
     private:
-        std::vector<Shape*> shapes;
-        DrawVisitor *draw_visitor;
+        std::vector<std::unique_ptr<Shape>> shapes;
+        std::unique_ptr<DrawVisitor> draw_visitor;
 
     public:
         App();

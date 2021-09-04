@@ -3,6 +3,7 @@
 
 #include <Shapes/Shape.hpp>
 
+#include <memory>               // std::unique_ptr
 #include <string>               // std::string
 
 namespace MiniCAD
@@ -22,7 +23,7 @@ namespace MiniCAD
         ShapeFactory(const ShapeFactory &) = delete;
         void operator=(const ShapeFactory &) = delete;
 
-        Shape *CreateShape(const std::string &line) const;
+        std::unique_ptr<Shape> CreateShape(const std::string &line) const;
     };
 }
 
