@@ -9,7 +9,7 @@
 
 namespace MiniCAD
 {
-    Rectangle::Rectangle(Point top_left, int height, int width, Color outline_color,
+    Rectangle::Rectangle(Point top_left, unsigned height, unsigned width, Color outline_color,
                          Color fill_color)
         : top_left(top_left), height(height), width(width),
           outline_color(outline_color), fill_color(fill_color)
@@ -27,12 +27,12 @@ namespace MiniCAD
         return top_left;
     }
 
-    int Rectangle::GetHeight() const
+    unsigned Rectangle::GetHeight() const
     {
         return height;
     }
 
-    int Rectangle::GetWidth() const
+    unsigned Rectangle::GetWidth() const
     {
         return width;
     }

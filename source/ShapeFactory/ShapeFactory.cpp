@@ -16,14 +16,14 @@
 #include <memory>               // std::unique_ptr
 #include <stdexcept>            // std::invalid_argument, std::out_of_range, std::bad_alloc
 #include <sstream>              // std::stringstream
-#include <string>               // std::string, std::stoul, std::stoi, std::getline
-#include <vector>               // std::vector, std::size_t
+#include <string>               // std::string, std::stoul, std::stol, std::stoi std::getline
+#include <vector>               // std::vector
 
 // Can throw std::invalid_argument and std::out_of_range
 static MiniCAD::Point ParsePoint(const std::string &x, const std::string &y)
 {
-    std::uint8_t x_ = static_cast<std::uint8_t>(std::stoi(x));
-    std::uint8_t y_ = static_cast<std::uint8_t>(std::stoi(y));
+    unsigned x_ = static_cast<unsigned>(std::stol(x));
+    unsigned y_ = static_cast<unsigned>(std::stol(y));
     return MiniCAD::Point(x_, y_);
 }
 
@@ -46,8 +46,8 @@ static std::unique_ptr<MiniCAD::Canvas> CreateCanvas(const std::vector<std::stri
 
     try
     {
-        int height = std::stoi(line_split.at(1));
-        int width = std::stoi(line_split.at(2));
+        unsigned height = std::stol(line_split.at(1));
+        unsigned width = std::stol(line_split.at(2));
         MiniCAD::Color color = ParseColor(line_split.at(3), line_split.at(4));
         canvas = new MiniCAD::Canvas(height, width, color);
     }
@@ -101,7 +101,7 @@ static std::unique_ptr<MiniCAD::Square> CreateSquare(const std::vector<std::stri
     try
     {
         MiniCAD::Point top_left = ParsePoint(line_split.at(1), line_split.at(2));
-        int side = std::stoi(line_split.at(3));
+        unsigned side = std::stol(line_split.at(3));
         MiniCAD::Color outline_color = ParseColor(line_split.at(4), line_split.at(5));
         MiniCAD::Color fill_color = ParseColor(line_split.at(6), line_split.at(7));
         square = new MiniCAD::Square(top_left, side, outline_color, fill_color);
@@ -129,8 +129,8 @@ static std::unique_ptr<MiniCAD::Rectangle> CreateRectangle(const std::vector<std
     try
     {
         MiniCAD::Point top_left = ParsePoint(line_split.at(1), line_split.at(2));
-        int height = std::stoi(line_split.at(3));
-        int width = std::stoi(line_split.at(4));
+        unsigned height = std::stol(line_split.at(3));
+        unsigned width = std::stol(line_split.at(4));
         MiniCAD::Color outline_color = ParseColor(line_split.at(5), line_split.at(6));
         MiniCAD::Color fill_color = ParseColor(line_split.at(7), line_split.at(8));
         rectangle = new MiniCAD::Rectangle(top_left, height, width, outline_color, fill_color);
@@ -158,7 +158,7 @@ static std::unique_ptr<MiniCAD::Circle> CreateCircle(const std::vector<std::stri
     try
     {
         MiniCAD::Point center = ParsePoint(line_split.at(1), line_split.at(2));
-        int radius = std::stoi(line_split.at(3));
+        unsigned radius = std::stol(line_split.at(3));
         MiniCAD::Color outline_color = ParseColor(line_split.at(4), line_split.at(5));
         MiniCAD::Color fill_color = ParseColor(line_split.at(6), line_split.at(7));
         circle = new MiniCAD::Circle(center, radius, outline_color, fill_color);
@@ -215,8 +215,8 @@ static std::unique_ptr<MiniCAD::Diamond> CreateDiamond(const std::vector<std::st
     try
     {
         MiniCAD::Point center = ParsePoint(line_split.at(1), line_split.at(2));
-        int horizontal_diagonal = std::stoi(line_split.at(3));
-        int vertical_diagonal = std::stoi(line_split.at(4));
+        unsigned horizontal_diagonal = std::stol(line_split.at(3));
+        unsigned vertical_diagonal = std::stol(line_split.at(4));
         MiniCAD::Color outline_color = ParseColor(line_split.at(5), line_split.at(6));
         MiniCAD::Color fill_color = ParseColor(line_split.at(7), line_split.at(8));
         diamond = new MiniCAD::Diamond(center, horizontal_diagonal, vertical_diagonal,
@@ -245,16 +245,16 @@ static std::unique_ptr<MiniCAD::Polygon> CreatePolygon(const std::vector<std::st
     try
     {
         std::vector<MiniCAD::Point> points;
-        int points_num = std::stoi(line_split.at(1));
+        unsigned points_num = std::stol(line_split.at(1));
 
         points.reserve(points_num);
-        for (std::size_t coordinate_index = 2; coordinate_index < line_split.size() - 4; coordinate_index += 2)
+        for (decltype(line_split.size()) point_index = 2; point_index < line_split.size() - 4; point_index += 2)
         {
-            MiniCAD::Point p = ParsePoint(line_split.at(coordinate_index), line_split.at(coordinate_index + 1));
+            MiniCAD::Point p = ParsePoint(line_split.at(point_index), line_split.at(point_index + 1));
             points.push_back(p);
         }
 
-        int color_index = line_split.size() - 4;
+        decltype(line_split.size()) color_index = line_split.size() - 4;
         MiniCAD::Color outline_color = ParseColor(line_split.at(color_index), line_split.at(color_index + 1));
         MiniCAD::Color fill_color = ParseColor(line_split.at(color_index + 2), line_split.at(color_index + 3));
 

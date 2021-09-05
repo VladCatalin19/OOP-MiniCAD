@@ -14,17 +14,17 @@ namespace MiniCAD
     {
     private:
         Point top_left;
-        int height, width;
+        unsigned height, width;
         Color outline_color, fill_color;
 
     public:
-        Rectangle(Point top_left, int height, int width, Color outline_color,
+        Rectangle(Point top_left, unsigned height, unsigned width, Color outline_color,
                   Color fill_color);
         ~Rectangle();
 
         Point GetTopLeftPoint() const;
-        int GetHeight() const;
-        int GetWidth() const;
+        unsigned GetHeight() const;
+        unsigned GetWidth() const;
         Color GetOutlineColor() const;
         Color GetFillColor() const;
 

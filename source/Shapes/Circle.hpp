@@ -14,15 +14,15 @@ namespace MiniCAD
     {
     private:
         Point center;
-        int radius;
+        unsigned radius;
         Color outline_color, fill_color;
 
     public:
-        Circle(Point center, int radius, Color outline_color, Color fill_color);
+        Circle(Point center, unsigned radius, Color outline_color, Color fill_color);
         virtual ~Circle();
 
         Point GetCenterPoint() const;
-        int GetRadius() const;
+        unsigned GetRadius() const;
         Color GetOutlineColor() const;
         Color GetFillColor() const;
 

@@ -9,7 +9,7 @@
 
 namespace MiniCAD
 {
-    Circle::Circle(Point center, int radius, Color outline_color, Color fill_color)
+    Circle::Circle(Point center, unsigned radius, Color outline_color, Color fill_color)
         : center(center), radius(radius), outline_color(outline_color), fill_color(fill_color)
     {
         
@@ -25,7 +25,7 @@ namespace MiniCAD
         return center;
     }
 
-    int Circle::GetRadius() const
+    unsigned Circle::GetRadius() const
     {
         return radius;
     }

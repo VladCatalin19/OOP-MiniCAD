@@ -5,7 +5,7 @@
 
 namespace MiniCAD
 {
-    Point::Point(int x, int y)
+    Point::Point(unsigned x, unsigned y)
         : x(x), y(y)
     {
 

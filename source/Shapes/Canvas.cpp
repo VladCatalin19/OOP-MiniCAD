@@ -9,7 +9,7 @@
 
 namespace MiniCAD
 {
-    Canvas::Canvas(int height, int width, Color color)
+    Canvas::Canvas(unsigned height, unsigned width, Color color)
         : height(height), width(width), color(color)
     {
 
@@ -20,12 +20,12 @@ namespace MiniCAD
 
     }
 
-    int Canvas::GetHeight() const
+    unsigned Canvas::GetHeight() const
     {
         return height;
     }
 
-    int Canvas::GetWidth() const
+    unsigned Canvas::GetWidth() const
     {
         return width;
     }

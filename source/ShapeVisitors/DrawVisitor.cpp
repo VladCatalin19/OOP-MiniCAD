@@ -17,7 +17,7 @@
 
 #include <algorithm>
 #include <queue>                    // std::queue
-#include <stdexcept>
+#include <stdexcept>                // std::invalid_argument
 #include <string>                   // std::string
 #include <vector>                   // std::vector
 
@@ -95,7 +95,7 @@ namespace MiniCAD
                         ColorToVec4b(canvas.GetColor()));
     }
 
-    void DrawVisitor::Visit(Line const& line)
+    void DrawVisitor::Visit(const Line &line)
     {
         cv::Scalar color = ColorToVec4b(line.GetColor());
         // Generalized Integer Bresenham's Algorithm for all quadrants
@@ -151,8 +151,9 @@ namespace MiniCAD
         {
             for (int y = y_start; y <= y_end; ++y)
             {
-                Color c = x == x_start || x == x_end || y == y_start || y == y_end
-                    ? rectangle.GetOutlineColor() : rectangle.GetFillColor();
+                Color c = (x == x_start) || (x == x_end) || (y == y_start) || (y == y_end)
+                          ? rectangle.GetOutlineColor()
+                          : rectangle.GetFillColor();
 
                 PutPixel(image, x, y, ColorToVec4b(c));
             }
@@ -220,11 +221,10 @@ namespace MiniCAD
         std::vector<Point> points = polygon.GetPoints();
         Color c = polygon.GetOutlineColor();
 
-        int points_size = static_cast<int>(points.size());
-        for (int i = 0; i < points_size; ++i)
+        for (decltype(points.size()) point_index = 0; point_index < points.size(); ++point_index)
         {
-            Point p0 = points[i];
-            Point p1 = points[(i + 1) % points_size];
+            Point p0 = points[point_index];
+            Point p1 = points[(point_index + 1) % points.size()];
             Visit(Line(p0, p1, c));
         }
         Point center = GetCenterOfMass(points);
@@ -248,16 +248,16 @@ namespace MiniCAD
             throw std::invalid_argument(ErrorMessages::InvalidFillStartingPoint);
         }
 
-        std::queue<Cell> q;
-        q.push(Cell(x_start, y_start));
+        std::queue<Cell> cell_queue;
+        cell_queue.push(Cell(x_start, y_start));
 
         std::vector<std::vector<bool>> visited(image.cols,
                                                std::vector<bool>(image.rows, false));
 
-        while (!q.empty())
+        while (!cell_queue.empty())
         {
-            Cell cell = q.front();
-            q.pop();
+            Cell cell = cell_queue.front();
+            cell_queue.pop();
 
             if (visited[cell.x][cell.y])
             {
@@ -278,7 +278,7 @@ namespace MiniCAD
                 if (IsInside(image, neighbor.x, neighbor.y)
                     && (GetPixel(image, neighbor.x, neighbor.y) != outline_color))
                 {
-                    q.push(neighbor);
+                    cell_queue.push(neighbor);
                 }
             }
         }

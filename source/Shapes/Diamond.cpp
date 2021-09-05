@@ -10,7 +10,7 @@
 
 namespace MiniCAD
 {
-    Diamond::Diamond(Point center, int horizontal_diagonal, int vertical_diagonal,
+    Diamond::Diamond(Point center, unsigned horizontal_diagonal, unsigned vertical_diagonal,
                      Color outline_color, Color fill_color)
         : center(center),
           horizontal_diagonal(horizontal_diagonal), vertical_diagonal(vertical_diagonal),
@@ -29,12 +29,12 @@ namespace MiniCAD
         return center;
     }
 
-    int Diamond::GetHorizontalDiagonal() const
+    unsigned Diamond::GetHorizontalDiagonal() const
     {
         return horizontal_diagonal;
     }
 
-    int Diamond::GetVerticalDiagonal() const
+    unsigned Diamond::GetVerticalDiagonal() const
     {
         return vertical_diagonal;
     }

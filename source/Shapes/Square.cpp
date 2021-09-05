@@ -9,7 +9,7 @@
 
 namespace MiniCAD
 {
-    Square::Square(Point top_left, int side, Color outline_color, Color fill_color)
+    Square::Square(Point top_left, unsigned side, Color outline_color, Color fill_color)
         : top_left(top_left), side(side), outline_color(outline_color), fill_color(fill_color)
     {
         
@@ -25,7 +25,7 @@ namespace MiniCAD
         return top_left;
     }
 
-    int Square::GetSide() const
+    unsigned Square::GetSide() const
     {
         return side;
     }

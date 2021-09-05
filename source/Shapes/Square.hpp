@@ -14,15 +14,15 @@ namespace MiniCAD
     {
     private:
         Point top_left;
-        int side;
+        unsigned side;
         Color outline_color, fill_color;
 
     public:
-        Square(Point top_left, int side, Color outline_color, Color fill_color);
+        Square(Point top_left, unsigned side, Color outline_color, Color fill_color);
         virtual ~Square();
 
         Point GetTopLeftPoint() const;
-        int GetSide() const;
+        unsigned GetSide() const;
         Color GetOutlineColor() const;
         Color GetFillColor() const;
 

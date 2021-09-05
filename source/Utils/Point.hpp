@@ -7,9 +7,9 @@ namespace MiniCAD
 {
     struct Point
     {
-        int x, y;
+        unsigned x, y;
 
-        Point(int x, int y);
+        Point(unsigned x, unsigned y);
         ~Point();
 
         friend std::ostream& operator<<(std::ostream &os, const Point &point);

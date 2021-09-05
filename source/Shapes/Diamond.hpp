@@ -14,17 +14,17 @@ namespace MiniCAD
     {
     private:
         Point center;
-        int horizontal_diagonal, vertical_diagonal;
+        unsigned horizontal_diagonal, vertical_diagonal;
         Color outline_color, fill_color;
 
     public:
-        Diamond(Point center, int horizontal_diagonal, int vertical_diagonal,
+        Diamond(Point center, unsigned horizontal_diagonal, unsigned vertical_diagonal,
                 Color outline_color, Color fill_color);
         virtual ~Diamond();
 
         Point GetCenterPoint() const;
-        int GetHorizontalDiagonal() const;
-        int GetVerticalDiagonal() const;
+        unsigned GetHorizontalDiagonal() const;
+        unsigned GetVerticalDiagonal() const;
         Color GetOutlineColor() const;
         Color GetFillColor() const;
 
