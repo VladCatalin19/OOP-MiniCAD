@@ -11,7 +11,7 @@
 
 #include <Utils/Constants.hpp>
 
-#include <opencv2/imgcodecs.hpp>
+#include <opencv2/imgcodecs.hpp>    // cv::imwrite
 #include <opencv2/core/matx.hpp>    // cv::Vec4b
 #include <opencv2/core/mat.hpp>     // cv::Mat
 
