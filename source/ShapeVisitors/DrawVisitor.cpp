@@ -15,7 +15,6 @@
 #include <opencv2/core/matx.hpp>    // cv::Vec4b
 #include <opencv2/core/mat.hpp>     // cv::Mat
 
-#include <algorithm>
 #include <queue>                    // std::queue
 #include <stdexcept>                // std::invalid_argument
 #include <string>                   // std::string
